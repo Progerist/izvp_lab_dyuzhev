@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Лабораторна робота №10</title>
+  </head>
+  <body>
+<?php
+$xml_doc= new DomDocument();
+$xml_doc->loadXML("<?xml version='1.0'?><book><name>Magic of the morning</name><author>Hal Elrod</author><pages>239</pages><publisher>Mann, Ivanov and Ferber</publisher></book>");
+$file_name = "book2.xml";
+echo $xml_doc->save($file_name);
+?>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<title>Test</title>
+		<meta charset="utf-8">
+		<style>
+		.inside {
+			border-collapse: collapse;
+  			border: 2px solid rgb(200,200,200);
+			letter-spacing: 1px;
+			font-size: 0.8rem;
+		}
+		.mainColls {
+			width: 500px;
+		}
+		.colls {
+			width: 35px;
+			height: 25px;
+			padding: 3px; /* Поля вокруг содержимого таблицы */
+    		border: 1px solid black; /* Параметры рамки */
+		}
+		#shapka{
+		  text-align: left; 
+		  width: 750px; 
+		  background: #900000; 
+		  height: 50px; 
+		  margin-right: auto; 
+		  margin-left: auto; 
+		  padding: 10px; 
+		  text-align: center;
+		}
+		</style>
+	</head>
+	<body>
+		<!-- Програма сортування масиву -->
+		<h1>Тестова сторінка. ЛР4</h1>
+		<h2>Баготовимірні масиви</h2>
+		<?php
+		$arProducts=array();
+		$arProducts[]=array(
+							"name"=>"Bread",
+							"weight"=>0.500,
+							"price"=>10.50);
+		$arProducts[]=array(
+							"name"=>"Ice-cream",
+							"weight"=>0.075,
+							"price"=>8.75);
+		$arProducts[]=array(
+							"name"=>"Choclate",
+							"weight"=>0.090,
+							"price"=>17.40);
+		$arProducts[]=array(
+							"name"=>"Sweet",
+							"weight"=>0.005,
+							"price"=>0.70);
+		$arProducts[]=array(
+							"name"=>"Sweet water",
+							"weight"=>1.000,
+							"price"=>12.25);
+		$matrix1 = array(array());
+		$matrix2 = array(array());
+		$matrixSum = array(array());
+
+		for ($i = 0; $i < 10; $i++)
+		{
+			for ($j = 0; $j < 10; $j++)
+			{
+				$matrix1[$i][$j] = rand(0, 100);
+				$matrix2[$i][$j] = rand(0, 100);
+			}
+		}
+		?>
+		<table>
+		<tr>
+		<td class="mainColls">
+		<h3>1-ая матрица</h3>
+		<table class="inside">
+		<?php
+		for ($i = 0; $i < 10; $i++)
+		{
+		?>
+		
+				<tr>
+					<?php
+					for ($j = 0; $j < 10; $j++)
+					{
+						echo '<td class="colls">';
+						echo $matrix1[$i][$j];
+						echo '</td>';
+					}}
+					?>
+				</tr>
+		</table>
+		</td>
+		<td class="mainColls">
+		<h3>2-ая матрица</h3>
+		<table class="inside">
+		<?php
+		for ($i = 0; $i < 10; $i++)
+		{
+		?>
+		
+				<tr>
+					<?php
+					for ($j = 0; $j < 10; $j++)
+					{
+						echo '<td class="colls">';
+						echo $matrix2[$i][$j];
+						echo '</td>';
+					}}
+					?>
+				</tr>
+		</table>
+		</td>
+		<td class="mainColls">
+		<h3>Сумма матриц</h3>
+		<table class="inside">
+		<?php
+		for ($i = 0; $i < 10; $i++)
+		{
+		?>
+				<tr>
+					<?php
+					for ($j = 0; $j < 10; $j++)
+					{
+						echo '<td class="colls">';
+						echo $matrix1[$i][$j] + $matrix2[$i][$j];
+						echo '</td>';
+					}}
+					?>
+				</tr>
+		</table>
+		</td>
+		</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<title>Test</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<!-- Програма сортування масиву -->
+		<h1>Тестова сторінка. ЛР4</h1>
+		<h2>Баготовимірні масиви</h2>
+		<?php
+		$arProducts=array();
+		$arProducts[]=array(
+							"name"=>"Bread",
+							"weight"=>0.500,
+							"price"=>10.50);
+		$arProducts[]=array(
+							"name"=>"Ice-cream",
+							"weight"=>0.075,
+							"price"=>8.75);
+		$arProducts[]=array(
+							"name"=>"Choclate",
+							"weight"=>0.090,
+							"price"=>17.40);
+		$arProducts[]=array(
+							"name"=>"Sweet",
+							"weight"=>0.005,
+							"price"=>0.70);
+		$arProducts[]=array(
+							"name"=>"Sweet water",
+							"weight"=>1.000,
+							"price"=>12.25);
+		?>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>Age</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach($arProducts as $value):?>
+				<tr>
+					<td><?=$value["name"]?></td>
+					<td><?=$value["weight"]?></td>
+					<td><?=$value["price"]?></td>
+				</tr>
+				<?php endforeach;?>
+			</tbody>
+		</table>
+	</body>
+</html>

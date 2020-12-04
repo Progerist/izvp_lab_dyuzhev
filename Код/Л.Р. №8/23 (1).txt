@@ -1,0 +1,20 @@
+<?php
+class Car
+{
+	private $brand;
+	private $color;
+	private $max_speed;
+	function __construct($brand, $color, $max_speed)
+	{
+		$this->brand = $brand;
+		$this->color = $color;
+		$this->max_speed = $max_speed;
+	}
+	function getAllInfo()
+	{
+		echo "Марка: $this->brand <br> Колір: $this->color <br> Максимальная швидкість: $this->max_speed <br>";
+	}
+}
+$obj = new Car("BMW", "Blue", 100);
+$obj->getAllInfo();
+?>

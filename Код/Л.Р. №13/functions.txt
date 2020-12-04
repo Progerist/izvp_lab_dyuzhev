@@ -1,0 +1,57 @@
+<?php
+function LoadImage(&$fn, &$w, &$h, &$t) {
+	$info = getimagesize($fn);
+	$w = $info[0];
+	$h = $info[1];
+	$t = $info[2];
+}
+
+function CreateImage(&$fn, &$t, &$img) {
+	switch ($t) { 
+	case 1: 
+	$img = imageCreateFromGif($fn);
+	imageSaveAlpha($img, true);
+	break; 
+	case 2: 
+	$img = imageCreateFromJpeg($fn);
+	break;
+	case 3: 
+	$img = imageCreateFromPng($fn);
+	imageSaveAlpha($img, true);
+	break;
+	}
+}
+
+function ShowImage(&$t, &$img) {
+	switch ($t) {
+	case 1: 
+	header('Content-Type: image/gif'); 
+	imageGif($img);
+	break; 
+	case 2: 
+	header('Content-Type: image/jpeg');
+	imageJpeg($img, null, 100);
+	break; 
+	case 3: 
+	header('Content-Type: image/x-png');
+	imagePng($img);
+	break;
+	}
+}
+?>
+
+<?php
+$filename = __DIR__."\pon4ik.png";
+$width;
+$height;
+$type;
+$image;
+
+LoadImage($filename, $width, $height, $type);
+CreateImage($filename, $type, $image);
+ShowImage($type, $image);
+echo $filename."<br/>";
+echo $width."<br/>";
+echo $height."<br/>";
+echo $type."<br/>";
+?>

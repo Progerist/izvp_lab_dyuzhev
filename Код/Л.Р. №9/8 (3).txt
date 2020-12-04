@@ -1,0 +1,22 @@
+<?php
+$counter = 0;
+if(isset($_COOKIE["counter"])){ 
+	$counter = $_COOKIE["counter"];
+}
+$counter++;
+setCookie("counter", $counter);
+?>
+<html>
+	<head>
+		<title>Налаштування файлів cookie за допомогою PHP</title>
+	</head>
+	<body>
+		<?php
+		if(isset($_COOKIE["counter"])) {
+			echo "Кількість відвідувань сторінки: ".$counter;
+		}
+		else
+			echo "Кукі не знайдено" . "<br/>";
+		?>
+	</body>
+</html>

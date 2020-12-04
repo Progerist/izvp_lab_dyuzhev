@@ -1,0 +1,169 @@
+<?php
+$filename = __DIR__."\pon4ik.png";
+$info = getimagesize($filename);
+$width = $info[0];
+$height = $info[1];
+$type = $info[2];
+
+
+
+switch ($type) { 
+case 1: 
+$img = imageCreateFromGif($filename);
+imageSaveAlpha($img, true);
+break; 
+case 2: 
+$img = imageCreateFromJpeg($filename);
+break;
+case 3: 
+$img = imageCreateFromPng($filename); 
+imageSaveAlpha($img, true);
+break;
+}
+
+
+
+$w = 500;
+$h = 600;
+
+if (empty($w)) {
+$w = ceil($h / ($height / $width));
+}
+if (empty($h)) {
+$h = ceil($w / ($width / $height));
+}
+
+$tmp = imageCreateTrueColor($w, $h);
+if ($type == 1 || $type == 3) {
+imagealphablending($tmp, true); 
+imageSaveAlpha($tmp, true);
+$transparent = imagecolorallocatealpha($tmp, 0, 0, 0, 127); 
+imagefill($tmp, 0, 0, $transparent); 
+imagecolortransparent($tmp, $transparent); 
+} 
+
+$tw = ceil($h / ($height / $width));
+$th = ceil($w / ($width / $height));
+if ($tw < $w) {
+imageCopyResampled($tmp, $img, ceil(($w - $tw) / 2), 0, 0, 0, $tw, $h, $width, $height); 
+} else {
+imageCopyResampled($tmp, $img, 0, ceil(($h - $th) / 2), 0, 0, $w, $th, $width, $height); 
+} 
+
+$img = $tmp;
+
+
+
+$w = 300;
+$h = 300;
+
+$x = '100%';
+$y = '100%';
+
+if (strpos($x, '%') !== false) {
+$x = intval($x);
+$x = ceil(($width * $x / 100) - ($w / 100 * $x));
+}
+if (strpos($y, '%') !== false) {
+$y = intval($y);
+$y = ceil(($height * $y / 100) - ($h / 100 * $y));
+}
+
+$tmp = imageCreateTrueColor($w, $h);
+if ($type == 1 || $type == 3) {
+imagealphablending($tmp, true); 
+imageSaveAlpha($tmp, true);
+$transparent = imagecolorallocatealpha($tmp, 0, 0, 0, 127); 
+imagefill($tmp, 0, 0, $transparent); 
+imagecolortransparent($tmp, $transparent); 
+}
+
+imageCopyResampled($tmp, $img, 0, 0, $x, $y, $width, $height, $width, $height);
+$img = $tmp;
+
+
+
+$watermark = __DIR__ . '/firemark.png';
+
+$x = '0%';
+$y = '20%';
+
+$info = getimagesize($watermark);
+switch ($info[2]) { 
+case 1: 
+$tmp = imageCreateFromGif($watermark);
+break; 
+case 2: 
+$tmp = imageCreateFromJpeg($watermark);
+break;
+case 3: 
+$tmp = imageCreateFromPng($watermark); 
+break;
+}
+
+if (strpos($x, '%') !== false) {
+$x = intval($x);
+$x = ceil(($width * $x / 100) - ($info[0] / 100 * $x));
+}
+if (strpos($y, '%') !== false) {
+$y = intval($y);
+$y = ceil(($height * $y / 100) - ($info[1] / 100 * $y));
+}
+
+imagecopy($img, $tmp, $x, $y, 0, 0, $info[0], $info[1]); 
+imagedestroy($tmp);
+
+
+
+$background = __DIR__ . '/programming.jpg';
+
+// Положение фона.
+$x = '0%';
+$y = '0%';
+
+$info = getimagesize($background);
+switch ($info[2]) { 
+case 1: 
+$bg = imageCreateFromGif($background);
+break; 
+case 2: 
+$bg = imageCreateFromJpeg($background);
+break;
+case 3: 
+$bg = imageCreateFromPng($background); 
+break;
+}
+
+if (strpos($x, '%') !== false) {
+$x = intval($x);
+$x = ceil(($info[0] * $x / 100) - ($width / 100 * $x));
+}
+if (strpos($y, '%') !== false) {
+$y = intval($y);
+$y = ceil(($info[1] * $y / 100) - ($height / 100 * $y));
+}
+
+$tmp = imageCreateTrueColor($width, $height);
+imagecopy($tmp, $bg, 0, 0, $x, $y, $width, $height); 
+imagedestroy($bg);
+
+imagecopy($tmp, $img, 0, 0, 0, 0, $width, $height); 
+$img = $tmp;
+
+
+
+switch ($type) {
+case 1: 
+header('Content-Type: image/gif'); 
+imageGif($img);
+break; 
+case 2: 
+header('Content-Type: image/jpeg');
+imageJpeg($img, null, 100);
+break; 
+case 3: 
+header('Content-Type: image/x-png');
+imagePng($img);
+break;
+}
+?>

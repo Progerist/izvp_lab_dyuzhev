@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<title>Test</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<!-- Програма сортування масиву -->
+		<h1>Тестова сторінка. ЛР4</h1>
+		<h2>Баготовимірні масиви</h2>
+				<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>Age</th>
+					<th>Is student</th>
+				</tr>
+			</thead>
+			<tbody>
+							<tr>
+					<td>Ivan</td>
+					<td>Kostenko</td>
+					<td>20</td>
+					<td>1</td>
+				</tr>
+								<tr>
+					<td>Ruslan</td>
+					<td>Kostenko</td>
+					<td>12</td>
+					<td>0</td>
+				</tr>
+								<tr>
+					<td>Petro</td>
+					<td>Ilchenko</td>
+					<td>18</td>
+					<td>1</td>
+				</tr>
+							</tbody>
+		</table>
+	</body>
+</html>

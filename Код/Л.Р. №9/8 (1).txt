@@ -1,0 +1,18 @@
+<?php
+setcookie("name", "Mark", time()+3600, "/","", 0);
+?>
+<html>
+	<head>
+		<title>Налаштування файлів cookie за допомогою PHP</title>
+	</head>
+	<body>
+		<?php
+		if(isset($_COOKIE["name"])) {
+			echo "Кукі знайдено <br/>";
+			echo "<input  type='text' name='cookie' value='".$_COOKIE["name"]."'> <br/>";
+		}
+		else
+			echo "Кукі не знайдено" . "<br/>";
+		?>
+	</body>
+</html>

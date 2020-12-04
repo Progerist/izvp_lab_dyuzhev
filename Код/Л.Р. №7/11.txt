@@ -1,0 +1,37 @@
+<?php
+$file_name = 'content.txt';
+$file = fopen($file_name, 'r+');
+$i = 0;
+?>
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <title>Лабораторна робота №7</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<p>
+  		<?php
+	  		if (filesize($file_name) == 0) {
+				echo "Файл порожній";
+			} else {
+				echo "Початковий вміст файлу: <br>";
+				while (!feof($file)) {
+			   		echo fgets($file);
+			    	echo '<br>';
+			    	$i++;
+			    }
+			}
+  		?>
+  	</p>
+  	<?php
+  		$j = $i;
+		while ($j < $i+5) {
+			fputs($file, "New line #".$j.PHP_EOL);
+			$j++;
+		}
+	?>
+  	<p> <?php echo "Кінцевий вміст файлу: ".file_get_contents($file_name);?></p>
+  </body>
+</html>
